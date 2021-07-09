@@ -22,6 +22,7 @@ import com.karumi.dexter.listener.PermissionRequest;
 import com.karumi.dexter.listener.multi.MultiplePermissionsListener;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,6 +33,7 @@ public class Internalfragment extends Fragment implements Onfileselectedlistener
     private ImageView back;
     private List<File> fileList;
     File storage;
+    String data;
 
 
     @Override
@@ -47,6 +49,15 @@ public class Internalfragment extends Fragment implements Onfileselectedlistener
         String internalstorage = System.getenv("EXTERNAL_STORAGE");
         storage = new File(internalstorage);
         showfilepath.setText(storage.getAbsolutePath());
+
+        try {
+                data=getArguments().getString("path");
+                File file=new File(data);
+                storage=file;
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
 
         runtimepermission();
 
@@ -103,6 +114,19 @@ public class Internalfragment extends Fragment implements Onfileselectedlistener
 
     @Override
     public void onfileclick(File file) {
+        if(file.isDirectory()){
+            Bundle bundle=new Bundle();
+            bundle.putString("path",file.getAbsolutePath());
+            Internalfragment internalfragment=new Internalfragment();
+            internalfragment.setArguments(bundle);
+            getFragmentManager().beginTransaction().replace(R.id.framelayout,internalfragment).addToBackStack(null).commit();
+        }else {
+            try {
+                Fileopener.openfile(getContext(),file);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
 
 
     }
