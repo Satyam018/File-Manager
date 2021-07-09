@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/green"
+    android:orientation="vertical"
+    android:paddingVertical="26dp"
+    android:paddingHorizontal="16dp"
+    android:gravity="bottom">
+    <ImageView
+        android:layout_width="120dp"
+        android:paddingVertical="20dp"
+        android:layout_height="120dp"
+        android:src="@drawable/filemanger"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="File Manager"
+        android:textSize="20dp"
+        android:fontFamily="serif"
+        android:textColor="@color/black"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="3dp"
+            android:paddingLeft="10dp"
+            android:text="by:Learn Code"
+            android:textColor="@color/black"
+            android:textSize="15dp"
+            android:fontFamily="serif"/>
+
+</LinearLayout>
