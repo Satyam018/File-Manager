@@ -58,14 +58,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 temp=new Infofragment();
                 break;
         }
-        getSupportFragmentManager().beginTransaction().replace(R.id.framelayout,temp).commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.framelayout,temp).addToBackStack(null).commit();
         drawerLayouts.closeDrawer(GravityCompat.START);
         return true;
     }
 
     @Override
     public void onBackPressed() {
-        getSupportFragmentManager().popBackStackImmediate();
         if (drawerLayouts.isDrawerOpen(GravityCompat.START)){
             drawerLayouts.closeDrawer(GravityCompat.START);
         }else{
