@@ -34,6 +34,7 @@ public class Internalfragment extends Fragment implements Onfileselectedlistener
     private List<File> fileList;
     File storage;
     String data;
+    String items[]={"Details","Rename","Delete","Share"};
 
 
     @Override
