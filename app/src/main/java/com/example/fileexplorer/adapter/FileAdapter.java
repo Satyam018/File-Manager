@@ -68,7 +68,7 @@ public class FileAdapter extends RecyclerView.Adapter<Fileviewholders> {
         holder.container.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ((Internalfragment)onfileselectedlisteners).onfileclick(temp);
+                (onfileselectedlisteners).onfileclick(temp);
             }
         });
         holder.container.setOnLongClickListener(new View.OnLongClickListener() {
