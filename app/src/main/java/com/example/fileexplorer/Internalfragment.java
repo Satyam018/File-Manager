@@ -1,6 +1,7 @@
 package com.example.fileexplorer;
 
 import android.Manifest;
+import android.app.Dialog;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -11,7 +12,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.BaseAdapter;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.fileexplorer.adapter.FileAdapter;
@@ -134,6 +137,43 @@ public class Internalfragment extends Fragment implements Onfileselectedlistener
 
     @Override
     public void onfilelongclick(File file) {
+        final Dialog optiondialogue=new Dialog(getContext());
+        optiondialogue.setContentView(R.layout.option_dialogue);
+        optiondialogue.setTitle("select a option");
+        ListView optiondiaglogues=(ListView)optiondialogue.findViewById(R.id.list);
+        Customadapter customadapter=new Customadapter();
+        optiondiaglogues.setAdapter(customadapter);
+        optiondialogue.show();
 
+    }
+    class Customadapter extends BaseAdapter{
+
+        @Override
+        public int getCount() {
+            return items.length;
+        }
+
+        @Override
+        public Object getItem(int position) {
+            return items[position];
+        }
+
+        @Override
+        public long getItemId(int position) {
+            return 0;
+        }
+
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent) {
+            View view=getLayoutInflater().inflate(R.layout.option_layout,null);
+            TextView textoption=view.findViewById(R.id.txtoption);
+            ImageView img=view.findViewById(R.id.imgoption);
+            textoption.setText(items[position]);
+            if (items[position].equals("Details")){
+                img.setImageResource(R.drawable.ic_launcher_background);
+            }
+
+            return view;
+        }
     }
 }
