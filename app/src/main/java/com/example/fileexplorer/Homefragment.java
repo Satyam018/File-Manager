@@ -3,62 +3,50 @@ package com.example.fileexplorer;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link Homefragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+import com.example.fileexplorer.adapter.HomearraylistAdapter;
+import com.example.fileexplorer.adapter.model.Model1;
+
+import java.util.ArrayList;
+
 public class Homefragment extends Fragment {
+        RecyclerView recyclerView1;
+        ArrayList<Model1> model1ArrayList;
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
 
-    public Homefragment() {
-        // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment Homefragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static Homefragment newInstance(String param1, String param2) {
-        Homefragment fragment = new Homefragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_homefragment, container, false);
+        View view= inflater.inflate(R.layout.fragment_homefragment, container, false);
+        recyclerView1=(view).findViewById(R.id.homerecycler1);
+
+        setrecycler1();
+
+
+        return view;
+
+    }
+    private void setrecycler1(){
+        model1ArrayList=new ArrayList<>();
+        model1ArrayList.add(new Model1("image",R.drawable.image));
+        model1ArrayList.add(new Model1("video",R.drawable.video));
+        model1ArrayList.add(new Model1("apk",R.drawable.apk));
+        model1ArrayList.add(new Model1("pdf",R.drawable.pdf));
+        model1ArrayList.add(new Model1("Downloads",R.drawable.download));
+
+        recyclerView1.setLayoutManager(new GridLayoutManager(getContext(),3));
+        HomearraylistAdapter homearraylistAdapter=new HomearraylistAdapter(model1ArrayList,getContext());
+        recyclerView1.stopScroll();
+        recyclerView1.setAdapter(homearraylistAdapter);
+
     }
 }
