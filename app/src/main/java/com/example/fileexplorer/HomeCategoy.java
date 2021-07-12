@@ -5,6 +5,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.Manifest;
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Adapter;
@@ -26,6 +27,7 @@ import java.util.List;
 public class HomeCategoy extends AppCompatActivity  {
     String category;
     String filelink;
+
 
     TextView categorysname;
     RecyclerView categoryrecycler;
@@ -55,6 +57,7 @@ public class HomeCategoy extends AppCompatActivity  {
         filelink = System.getenv("EXTERNAL_STORAGE");
 
         getshortedfiles(filelink);
+
 
 
 

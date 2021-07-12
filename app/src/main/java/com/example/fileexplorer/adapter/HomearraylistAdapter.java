@@ -1,5 +1,6 @@
 package com.example.fileexplorer.adapter;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -21,6 +22,7 @@ import java.util.ArrayList;
 public class HomearraylistAdapter extends RecyclerView.Adapter<Homearraylist> {
     ArrayList<Model1> model1ArrayList;
     Context context;
+    ProgressDialog pd;
 
     public HomearraylistAdapter(ArrayList<Model1> model1ArrayList, Context context) {
         this.model1ArrayList = model1ArrayList;
@@ -43,9 +45,15 @@ public class HomearraylistAdapter extends RecyclerView.Adapter<Homearraylist> {
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                pd=new ProgressDialog(context);
+                pd.setTitle("Please wait");
+                pd.setMessage("Fetching Data");
+                pd.show();
+
                 Intent intent=new Intent(context, HomeCategoy.class);
                 intent.putExtra("category",temp.getText1());
                 context.startActivity(intent);
+                pd.dismiss();
             }
         });
 
