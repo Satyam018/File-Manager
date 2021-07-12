@@ -1,50 +1,68 @@
 package com.example.fileexplorer;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.RecyclerView;
 
+import android.Manifest;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.Adapter;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.karumi.dexter.Dexter;
+import com.karumi.dexter.MultiplePermissionsReport;
+import com.karumi.dexter.PermissionToken;
+import com.karumi.dexter.listener.PermissionRequest;
+import com.karumi.dexter.listener.multi.MultiplePermissionsListener;
+
 import java.io.File;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.List;
 
 public class HomeCategoy extends AppCompatActivity {
     String category;
     String filelink;
-    ArrayList<File> mainfilelist;
+
+    TextView categorysname;
+    RecyclerView categoryrecycler;
+
+
     private String TAG = "TAG";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_categoy);
+        categorysname=(TextView)findViewById(R.id.homecategory);
+        categoryrecycler=(RecyclerView)findViewById(R.id.homecategoryrecycler);
         category = getIntent().getStringExtra("category");
 
+
+
+
+
+
+
+        categorysname.setText(category);
+
+
         filelink = System.getenv("EXTERNAL_STORAGE");
-        File main = new File(filelink);
-        File[] files = main.listFiles();
-        mainfilelist = new ArrayList<>();
+        Managefile managefile=new Managefile(filelink,HomeCategoy.this,category,categoryrecycler);
+        managefile.start();
 
-        for (File singlefile : files) {
-            mainfilelist.add(singlefile);
-            Log.e(TAG, "onCreate: " + singlefile.getName().toString());
-        }
 
-        getshortedfiles();
 
-    }
 
-    private void getshortedfiles() {
-        for (File singlefile : mainfilelist) {
-            while (singlefile.isDirectory()) {
-                String path = singlefile.getAbsolutePath();
-                checkfile(path);
-            }
-        }
+
+
+
+
+
 
     }
-    private void checkfile(String path){
 
-    }
+
+
 }
