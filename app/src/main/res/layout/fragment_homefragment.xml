@@ -37,10 +37,15 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:id="@+id/gotolocal"
+
         android:orientation="horizontal"
         android:layout_weight="1.7"
         android:padding="2dp">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/gotolocal"
+            android:orientation="horizontal">
         <ImageView
             android:layout_width="60dp"
             android:layout_height="60dp"
@@ -58,6 +63,7 @@
             android:textSize="15dp"
             android:fontFamily="serif"
             />
+        </LinearLayout>
 
     </LinearLayout>
     </LinearLayout>
